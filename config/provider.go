@@ -22,8 +22,9 @@ type Provider interface {
 	GetTime(key string) time.Time
 	GetDuration(key string) time.Duration
 	IsSet(key string) bool
-	AllSettings(key string) map[string]interface{}
+	AllSettings() map[string]interface{}
 	Set(key string, value interface{})
+	SetTest(key string, value interface{})
 }
 
 
