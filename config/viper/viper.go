@@ -56,6 +56,11 @@ func New(relativeSourcePath, configFilename string, defaultCfg map[string]interf
 	}
 	v.AddConfigPath(relativeSourcePath)
 
+	// 设置默认配置
+	for key, val := range defaultCfg {
+		v.SetDefault(key, val)
+	}
+
 	if err := v.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
 			return nil, fmt.Errorf(errLocateConfigFile, relativeSourcePath, configFilename, err.Error())
@@ -70,15 +75,11 @@ func New(relativeSourcePath, configFilename string, defaultCfg map[string]interf
 	//	fmt.Println("Config file changed:", e.Name)
 	//})
 
-	for key, val := range defaultCfg {
-		v.SetDefault(key, val)
-	}
-
 	return &ConfigProvider{v}, nil
 }
 
 // 创建使用远程的配置
-func NewRemoteProvider(provider, endpoint, path, configType string) (cfg config.Provider, err error) {
+func NewRemoteProvider(provider, endpoint, path, configType string, defaultCfg map[string]interface{}) (cfg config.Provider, err error) {
 	var (
 		v *viper.Viper
 	)
@@ -92,6 +93,11 @@ func NewRemoteProvider(provider, endpoint, path, configType string) (cfg config.
 	err = v.AddRemoteProvider(provider, endpoint, path)
 	if err != nil {
 		return
+	}
+
+	// 设置默认配置
+	for key, val := range defaultCfg {
+		v.SetDefault(key, val)
 	}
 
 	v.SetConfigType(configType)

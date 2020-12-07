@@ -4,7 +4,6 @@
 
 package zaper
 
-
 import (
 	"io"
 	"strings"
@@ -190,4 +189,3 @@ func (l *logger) TFatal(tag, message string, args ...interface{}) {
 func (l *logger) Close() error {
 	return l.sugar.Sync()
 }
-
