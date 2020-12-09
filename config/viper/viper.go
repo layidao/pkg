@@ -103,6 +103,7 @@ func NewRemoteProvider(provider, endpoint, path, configType string, defaultCfg m
 	v.SetConfigType(configType)
 	err = v.ReadRemoteConfig()
 	if err != nil {
+		// 特别注意：此处如果consulkv的值的格式不正确，也会返回not found file 错误，真坑
 		return
 	}
 

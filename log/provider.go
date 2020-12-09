@@ -4,9 +4,8 @@
 
 package log
 
-
 // Logger interface
-type Logger interface {
+type Provider interface {
 	SetLevel(level string)
 
 	Info(args ...interface{})
@@ -35,4 +34,4 @@ type Logger interface {
 	Close() error
 }
 
-var Log Logger
+var Log Provider

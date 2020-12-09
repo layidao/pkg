@@ -8,7 +8,7 @@ import (
 	"github.com/unknwon/i18n"
 )
 
-func New(locales map[string]string) error {
+func Init(locales map[string]string) error {
 	//i18n.SetMessage("en-US", "conf/locale/locale_en-US.ini")
 	//i18n.SetMessage("zh-CN", "conf/locale/locale_zh-CN.ini")
 	for lang, localeFile := range locales {
