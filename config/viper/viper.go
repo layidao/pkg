@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/spacetimechain/pkg/config"
+	"github.com/layidao/pkg/config"
 
 	"github.com/spf13/viper"
 	_ "github.com/spf13/viper/remote"

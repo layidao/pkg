@@ -1,4 +1,4 @@
-module github.com/spacetimechain/pkg
+module github.com/layidao/pkg
 
 go 1.14
 
