@@ -24,7 +24,7 @@ func getHttpClient() *http.Client {
 	}
 }
 
-func HttpCet(url string) ([]byte, error) {
+func HttpGet(url string) ([]byte, error) {
 	client := getHttpClient()
 	resp, err := client.Get(url)
 	if err != nil {
