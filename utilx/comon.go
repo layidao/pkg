@@ -15,6 +15,9 @@ import (
 	"os"
 	"strings"
 	"time"
+	"crypto/sha1"
+	"encoding/base64"
+	"fmt"
 
 	"github.com/pkg/errors"
 	"github.com/snluu/uuid"
@@ -123,4 +126,21 @@ func Encrypt(plaintext []byte, keystring string) ([]byte, error) {
 	stream.XORKeyStream(ciphertext[aes.BlockSize:], plaintext)
 
 	return ciphertext, nil
+}
+
+func Sha1(data string) string {
+	t := sha1.New()
+	io.WriteString(t, data)
+	return fmt.Sprintf("%x", t.Sum(nil))
+}
+
+// 对数据进行 base64 编码
+func Base64Encode(s string) string {
+	return base64.StdEncoding.EncodeToString([]byte(s))
+}
+
+// 对数据进行 base64 解码
+func Base64Decode(s string) (string, error) {
+	rs, err := base64.StdEncoding.DecodeString(s)
+	return string(rs), err
 }
